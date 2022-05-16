@@ -24,15 +24,13 @@ function BookBlock() {
         const getBooks = async () =>{
             const data = await getDocs(booksCollectionRef);
             setBooks(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-            // console.log(books)
         }
         return getBooks;
-    }, [books])  // (убирать books чтобы посмотреть как работает сортировка)
+    }, [books])  // (убирать books если хотите узнать как работает сортировка =D )
 
 
 
     const createNewBook = async (newBook, getBooks) => {
-        // setBooks([...books, newBook]) // удалить потом
         // dispatch(addBook(newBook)); //раскомментировать для редакса
         await addDoc(booksCollectionRef, newBook)
         await getBooks();
@@ -40,7 +38,6 @@ function BookBlock() {
     }
 
     const removeBook = async (book, getBooks) => {
-        // setBooks(books.filter(b => b.id !== book.id))  // удалить потом
         // dispatch(deleteBook(book)); //раскомментировать для редакса
         const bookDoc = doc(db, "books", book)
         await deleteDoc(bookDoc);
@@ -62,7 +59,6 @@ function BookBlock() {
                 return true
             }
         }))
-        console.log(recomBooks)
     }
 
 
@@ -86,19 +82,9 @@ function BookBlock() {
                 removeBook={removeBook}
                 books={books}
             />
-            {/*<h1>В библиотеке книг нет :(</h1>*/}
         </div>
     );
 }
 
 export default BookBlock;
 
-// 1.Перенести все на Редакс, - готово!
-// 2. Подключить Firestore - готово!, но редакс не работает с ним...
-// 3. Сделать рекомендуемую книгу
-// 4. Поправить дизайн на нормальное что то - готово!
-// 5. Прорефакторить Form, очень много расписано
-
-// рекомендованную книгу как выводить не могу найти инфо.. может быть сделать отдельный компонент,
-// и проходясь по массиву с книгами найти подходящую и вывести в компоненте..., как то с помощью map, и внутри записать
-// выражение с проверкой типа if такой то проходит, то push в этот массив какой то новый state [recBook, setRecBook]

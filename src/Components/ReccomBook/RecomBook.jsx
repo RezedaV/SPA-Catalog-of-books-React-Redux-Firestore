@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
-import BookItem from "../BookItem/BookItem";
+import React from 'react';
 import RecomBookItem from "./RecomBookItem";
-import {addDoc} from "@firebase/firestore";
 import MyButton from "../MyButton/MyButton";
 import s from './RecomBook.module.css'
 

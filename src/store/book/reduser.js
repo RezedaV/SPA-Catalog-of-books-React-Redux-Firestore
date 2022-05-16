@@ -54,10 +54,8 @@ export const bookReducer = (state = initialState, action) => {
 
         case  DELETE_BOOK:
             return state.filter(({id}) =>id !== action.payload)
-        // setBooks(books.filter(b => b.id !== book.id))
         case  SORT_BOOK:
             return [...state].sort((a,b) => a[action.payload].localeCompare(b[action.payload]))
-        // setBooks([...books].sort((a,b) => a[sort].localeCompare(b[sort])))
         default:
             return state
     }
