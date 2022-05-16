@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+# SPA Каталог книг, можно добавлять и удалять книги.
+Есть блок с рекомендованными книгами
+Есть возможность сортировки
+Есть некоторая валидация при создании книги 
+Данные хранятся в Firestore
+
+
+Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
