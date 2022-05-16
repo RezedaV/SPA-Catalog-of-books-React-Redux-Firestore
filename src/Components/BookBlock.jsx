@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import CatalogYear from "./CatalogYear";
+import CatalogYear from "./CatalogYear/CatalogYear";
 import CustomForm from "./Form/Form";
-import Select from "./Filter/select";
+import Select from "./Filter/Select";
 import {selectBooks} from "../store/book/selectors";
 import {addBook, deleteBook, sortBook} from "../store/book/actions";
 import {collection, getDocs, addDoc, deleteDoc, doc} from "@firebase/firestore";
 import {db} from "../firebase";
+import RecomBook from "./ReccomBook/RecomBook";
 
 
 function BookBlock() {
@@ -16,15 +17,17 @@ function BookBlock() {
     const booksCollectionRef = collection(db, "books")
 
     const [selectedSort, setSelectedSort] = useState('');
+    const [recomBooks, setRecomBooks] = useState([]);
+    const [isBookLoading, setIsBookLoading] = useState(false)
 
     useEffect(() => {
         const getBooks = async () =>{
             const data = await getDocs(booksCollectionRef);
             setBooks(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-            console.log(books)
+            // console.log(books)
         }
         return getBooks;
-    }, [books])
+    }, [books])  // (убирать books чтобы посмотреть как работает сортировка)
 
 
 
@@ -51,14 +54,26 @@ function BookBlock() {
         // dispatch(sortBook(sort)) // раскомментировать для редакса
     }
 
+    const recommendationBook2 = () => {
+        setRecomBooks(books)
+        setRecomBooks(books.filter(book => {
+            if (book.year >= 2019){
+                setIsBookLoading(true)
+                return true
+            }
+        }))
+        console.log(recomBooks)
+    }
+
 
 
     return (
         <div>
+            <RecomBook recomBooks={recomBooks} recommendationBook2={recommendationBook2} isBookLoading={isBookLoading}/>
+            <hr/>
             <CustomForm createNewBook={createNewBook}/>
             <hr/>
-            <div>
-                <Select
+            <Select
                     value={selectedSort}
                     onChange={sortPosts}
                     defaultValue="Сортировка по"
@@ -66,8 +81,7 @@ function BookBlock() {
                         {value: 'name', name: 'По наименованию'},
                         {value: 'author', name: 'По автору'},
                     ]}
-                />
-            </div>
+            />
             <CatalogYear
                 removeBook={removeBook}
                 books={books}
@@ -82,7 +96,8 @@ export default BookBlock;
 // 1.Перенести все на Редакс, - готово!
 // 2. Подключить Firestore - готово!, но редакс не работает с ним...
 // 3. Сделать рекомендуемую книгу
-// 4. Поправить дизайн на нормальное что то
+// 4. Поправить дизайн на нормальное что то - готово!
+// 5. Прорефакторить Form, очень много расписано
 
 // рекомендованную книгу как выводить не могу найти инфо.. может быть сделать отдельный компонент,
 // и проходясь по массиву с книгами найти подходящую и вывести в компоненте..., как то с помощью map, и внутри записать

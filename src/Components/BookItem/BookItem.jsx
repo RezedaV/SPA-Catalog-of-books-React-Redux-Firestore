@@ -1,11 +1,13 @@
 import React from 'react';
+import MyButton from "../MyButton/MyButton";
+import s from './BookItem.module.css'
 
 
 const BookItem = ({book,number, removeBook}) => {
     return (
-        <div>
+        <div className={s.bookItem}>
             <div>
-                <strong>{number}.{book.name}</strong>
+                <strong>{number}. {book.name}</strong>
                 <div>
                     Автор книги: {book.author}
                 </div>
@@ -20,7 +22,7 @@ const BookItem = ({book,number, removeBook}) => {
                 </div>
             </div>
             <div>
-                <button  onClick={() => removeBook(book.id)}>Удалить книгу</button>
+                <MyButton  onClick={() => removeBook(book.id)}>Удалить книгу</MyButton>
             </div>
         </div>
     );

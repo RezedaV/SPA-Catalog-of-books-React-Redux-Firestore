@@ -1,0 +1,19 @@
+.bookItem{
+    display: flex;
+    padding: 15px 50px 15px 30px;
+    /*border: 2px solid #2c71d5;*/
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 768px){
+    .bookItem{
+        flex-direction: column;
+        align-items: normal;
+    }
+
+    .bookItem button{
+        margin-top: 20px;
+    }
+}

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import s from './Form.module.css'
+import MyButton from "../MyButton/MyButton";
 
 const CustomForm = ({createNewBook}) => {
     const [name, setName] = useState('');
@@ -104,7 +105,7 @@ const CustomForm = ({createNewBook}) => {
     }
 
     return (
-        <div>
+        <div className={s.formBlock}>
             <h2>Добавить книгу</h2>
             <form className={s.form}>
                 <label htmlFor='name'>Название книги</label>
@@ -161,7 +162,7 @@ const CustomForm = ({createNewBook}) => {
                     onChange={e => setIsbn(e.target.value)}
                 />
 
-                <button disabled={!formValid} onClick={addNewBook} type="submit">Создать</button>
+                <MyButton disabled={!formValid} onClick={addNewBook} type="submit">Создать</MyButton>
             </form>
         </div>
 

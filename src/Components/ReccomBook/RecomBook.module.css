@@ -1,0 +1,9 @@
+.recomBookBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recomBookBlock button{
+    margin-top: 30px;
+}

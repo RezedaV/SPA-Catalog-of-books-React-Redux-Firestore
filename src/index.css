@@ -6,8 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgba(6, 163, 252, 0.56);
-  color: #090909;
+  background: #292F3F;
+  color: white;
   font-family: Helvetica;
   font-style: normal;
   font-weight: normal;
@@ -19,4 +19,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+h1,
+select{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  color: #2c71d5;
+  text-align: center;
+}
+hr{
+  margin-top: 20px;
+}
+
+@media (max-width: 768px){
+ h1{
+   font-size: 30px;
+ }
 }
