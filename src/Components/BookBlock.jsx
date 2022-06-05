@@ -33,7 +33,7 @@ function BookBlock() {
     const createNewBook = async (newBook, getBooks) => {
         // dispatch(addBook(newBook)); //раскомментировать для редакса
         await addDoc(booksCollectionRef, newBook)
-        await getBooks();
+        // await getBooks();
 
     }
 
@@ -41,7 +41,7 @@ function BookBlock() {
         // dispatch(deleteBook(book)); //раскомментировать для редакса
         const bookDoc = doc(db, "books", book)
         await deleteDoc(bookDoc);
-        await getBooks();
+        // await getBooks();
     }
 
     //сортировка не работает, т.к. useEffect  обновляет всегда страницу... и возвращает старые данные,
